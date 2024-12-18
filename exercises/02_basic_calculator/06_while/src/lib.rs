@@ -1,10 +1,23 @@
 // Rewrite the factorial function using a `while` loop.
 pub fn factorial(n: u32) -> u32 {
-    // The `todo!()` macro is a placeholder that the compiler
-    // interprets as "I'll get back to this later", thus
-    // suppressing type errors.
-    // It panics at runtime.
-    todo!()
+    let mut curr_total = 0;
+    let mut next_int = n;
+
+    if n == 0 || n == 1 {
+        return 1;
+    }
+    
+    while next_int > 0 {
+        if curr_total == 0 {
+            curr_total = next_int * (next_int - 1);
+            continue;
+        }
+        
+        curr_total = curr_total * next_int;
+        next_int = next_int - 1
+    }
+
+    curr_total
 }
 
 #[cfg(test)]

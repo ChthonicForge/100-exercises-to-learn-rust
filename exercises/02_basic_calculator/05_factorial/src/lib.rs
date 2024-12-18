@@ -10,6 +10,35 @@
 //
 // Use only what you learned! No loops yet, so you'll have to use recursion!
 
+use std::net;
+
+fn factorial(n: i32) -> i32{
+    factorial_recursive(n, 0)
+}
+
+fn factorial_recursive(n:i32, curr_total: i32) -> i32 {
+    if n < 0 {
+        panic!("Integer cannot be less than 0")
+    }
+    if (n == 0 || n == 1) && curr_total == 0 {
+        return 1;
+    }
+
+    let next_int = n - 1;
+    if next_int == 0 {
+        return curr_total;
+    }
+    let curr_total_next = curr_total * next_int;
+    if curr_total_next == 0 {
+        let initial_total = n * next_int;
+        factorial_recursive(next_int, initial_total)
+    }
+    else {
+        factorial_recursive(next_int, curr_total_next)
+    }
+    
+}
+
 #[cfg(test)]
 mod tests {
     use crate::factorial;
